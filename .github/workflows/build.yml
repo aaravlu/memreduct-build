@@ -15,6 +15,20 @@ jobs:
           ref: refs/tags/v.3.4
           path: memreduct
 
+      - name: Checkout routine
+        uses: actions/checkout@v4
+        with:
+          repository: henrypp/routine
+          ref: refs/tags/v.2.6.3
+          path: routine
+
+      - name: Checkout builder
+        uses: actions/checkout@v4
+        with:
+          repository: henrypp/builder
+          ref: refs/tags/v.2.0.10
+          path: builder
+
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
@@ -22,23 +36,15 @@ jobs:
           toolset: 14.29
           sdk: 10.0.19041.0
 
-      - name: Fetch deps
-        working-directory: memreduct
-        run: |
-          git submodule update --init --recursive
-
       - name: Build
         working-directory: memreduct
-        shell: cmd
         run: |
-          ./build.bat
-
-          # msbuild memreduct.sln `
-          # /p:Platform=x64 `
-          # /p:Configuration=Release `
-          # /p:WholeProgramOptimization=true `
-          # /p:FunctionLevelLinking=true `
-          # /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2
+          msbuild memreduct.sln `
+          /p:Platform=x64 `
+          /p:Configuration=Release `
+          /p:WholeProgramOptimization=true `
+          /p:FunctionLevelLinking=true `
+          /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2
 
       - name: Archive Binary
         uses: actions/upload-artifact@v4
