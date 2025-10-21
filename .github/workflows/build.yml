@@ -29,6 +29,7 @@ jobs:
 
       - name: Build
         working-directory: memreduct
+        shell: cmd
         run: |
           ./build.bat
 
