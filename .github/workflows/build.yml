@@ -30,7 +30,7 @@ jobs:
       - name: Build
         working-directory: memreduct
         run: |
-          build.bat
+          ./build.bat
 
           # msbuild memreduct.sln `
           # /p:Platform=x64 `
