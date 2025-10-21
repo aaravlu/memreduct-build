@@ -22,9 +22,15 @@ jobs:
           toolset: 14.29
           sdk: 10.0.19041.0
 
+      - name: Fetch deps
+        working-directory: memreduct
+        run: |
+          git submodule update --init --recursive
+
       - name: Build
         working-directory: memreduct
-        run: msbuild memreduct.sln
+        run: |
+          msbuild memreduct.sln
           /p:Platform=x64 `
           /p:Configuration=Release `
           /p:WholeProgramOptimization=true `
