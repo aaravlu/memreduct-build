@@ -29,6 +29,11 @@ jobs:
           ref: refs/tags/v.2.0.10
           path: builder
 
+      - name: Check
+        run: |
+          ls -al routine
+          ls -al builder
+
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
         with:
