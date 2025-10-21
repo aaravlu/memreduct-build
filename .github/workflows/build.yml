@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: henrypp/memreduct
-          ref: refs/tags/v3.5.2
+          ref: refs/tags/v.3.4
           path: memreduct
 
       - name: Setup MSVC
