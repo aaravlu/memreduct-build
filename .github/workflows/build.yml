@@ -13,7 +13,7 @@ jobs:
         with:
           repository: henrypp/memreduct
           ref: refs/tags/v.3.4
-          path: project/memreduct
+          path: memreduct
 
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
@@ -23,19 +23,21 @@ jobs:
           sdk: 10.0.19041.0
 
       - name: Fetch deps
-        working-directory: project/memreduct
+        working-directory: memreduct
         run: |
           git submodule update --init --recursive
 
       - name: Build
-        working-directory: project/memreduct
+        working-directory: memreduct
         run: |
-          msbuild memreduct.sln `
-          /p:Platform=x64 `
-          /p:Configuration=Release `
-          /p:WholeProgramOptimization=true `
-          /p:FunctionLevelLinking=true `
-          /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2
+          build.bat
+
+          # msbuild memreduct.sln `
+          # /p:Platform=x64 `
+          # /p:Configuration=Release `
+          # /p:WholeProgramOptimization=true `
+          # /p:FunctionLevelLinking=true `
+          # /p:EnableEnhancedInstructionSet=AdvancedVectorExtensions2
 
       - name: Archive Binary
         uses: actions/upload-artifact@v4
