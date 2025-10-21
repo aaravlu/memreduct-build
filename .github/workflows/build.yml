@@ -30,7 +30,7 @@ jobs:
       - name: Build
         working-directory: memreduct
         run: |
-          msbuild memreduct.sln
+          msbuild memreduct.sln `
           /p:Platform=x64 `
           /p:Configuration=Release `
           /p:WholeProgramOptimization=true `
